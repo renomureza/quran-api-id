@@ -9,7 +9,9 @@
    <p align="center">
     <a href="https://quran-api-id.vercel.app"><strong>Demo</strong></a> · <a href="https://github.com/renomureza/quran-api-id/issues"><strong>Lapor Bug</strong></a> · <a href="https://github.com/renomureza/quran-api-id/issues"><strong>Request Fitur</strong></a>
   </p>
-  <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/renomureza/quran-api-id">
+  <a href="https://github.com/renomureza/quran-api-id/graphs/contributors">
+    <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/renomureza/quran-api-id">
+  </a>
   <a href="https://github.com/renomureza/quran-api-id/network/members">
     <img alt="GitHub forks" src="https://img.shields.io/github/forks/renomureza/quran-api-id">
   </a>
