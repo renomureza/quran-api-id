@@ -1,0 +1,27 @@
+{
+  "name": "quran-api-id",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "author": "R.M. Reza (renomureza@gmail.com)",
+  "homepage": "https://github.com/renomureza/quran-api-id#readme",
+  "url": "https://github.com/renomureza/quran-api-id/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/renomureza/quran-api-id.git"
+  },
+  "scripts": {
+    "build:data": "node ./data/scripts/quranBuilder",
+    "dev": "nodemon .",
+    "start": "node ."
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
