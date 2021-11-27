@@ -11,9 +11,11 @@
     "url": "https://github.com/renomureza/quran-api-id.git"
   },
   "scripts": {
-    "build:data": "node ./data/scripts/quranBuilder",
     "dev": "nodemon .",
-    "start": "node ."
+    "start": "node .",
+    "build:quran": "node ./data/scripts/quranBuilder",
+    "scrape:surah": "node ./data/scripts/surahKemenagScraper",
+    "scrape:tafsir": "node ./data/scripts/tafsirKemenagScraper"
   },
   "dependencies": {
     "axios": "^0.24.0",
