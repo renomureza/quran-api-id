@@ -65,7 +65,7 @@ Berikut beberapa sumber data yang digunakan:
 
 - `yarn start` - menjalankan server.
 - `yarn dev` - menjalankan server pengembangan.
-- `yarn build:data` - untuk membangun ulang data quran utama.
+- `yarn build:quran` - untuk membangun ulang data quran utama.
 
 ## License
 

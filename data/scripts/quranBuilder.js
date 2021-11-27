@@ -1,9 +1,10 @@
-const fs = require("fs");
+const fs = require("fs/promises");
 const { default: axios } = require("axios");
-const { data: quranKemenag } = require("../tmp/quran-kemenag.json");
 const tafsirQuraish = require("../tmp/tafsir-quraish.json");
 const tafsirJalalayn = require("../tmp/tafsir-jalalayn.json");
 const { pathToData, cleanHtmlTag } = require("../../utils/utility");
+const tafsirKemenag = require("../../data/tmp/tafsir-kemenag.json");
+const surahKemenag = require("../../data/tmp/surah-kemenag.json");
 
 const httpToHttps = (str = "") => str.replace("http", "https");
 
@@ -13,6 +14,25 @@ const getTafsirQuraish = (numberSurah, numberAyah) => {
 
 const getTafsirJalalayn = (numberSurah, numberAyah) => {
   return tafsirJalalayn[`${numberSurah}.${numberAyah}`];
+};
+
+const getTafsirKemenag = (ayahIdx) => {
+  return {
+    short: cleanHtmlTag(tafsirKemenag[ayahIdx].short.text),
+    long:
+      ayahIdx !== 293
+        ? removeWiredQuestionMark(
+            cleanHtmlTag(tafsirKemenag[ayahIdx].long.text)
+          )
+        : cleanHtmlTag(tafsirKemenag[ayahIdx].long.text),
+  };
+};
+
+const removeWiredQuestionMark = (tafsir) => {
+  // https://quran.kemenag.go.id/api/v1/tafsirbyayat/293
+  return tafsir
+    .replace(/\n+[ |():|\?]+\n/g, "")
+    .replace(/\u2026[ \.|\.]+/g, "");
 };
 
 const getSurahsQuranCloud = () => {
@@ -27,7 +47,7 @@ const getAudioAndDescriptionSurahs = () => {
     .then(({ data }) => data);
 };
 
-const getAudioPerAyah = (numberAyahInQuran) => {
+const getAudioAyah = (numberAyahInQuran) => {
   return {
     alafasy: `https://cdn.islamic.network/quran/audio/128/ar.alafasy/${numberAyahInQuran}.mp3`,
     ahmedajamy: `https://cdn.islamic.network/quran/audio/128/ar.ahmedajamy/${numberAyahInQuran}.mp3`,
@@ -46,11 +66,11 @@ const getImageAyah = (numberSurah, numberAyah) => {
 };
 
 const getBismillah = () => {
-  const { aya_text, translation_aya_text } = quranKemenag[0].verses[0];
+  const { aya_text, translation_aya_text } = surahKemenag[0].ayahs[0];
   return {
     arab: aya_text,
     translation: translation_aya_text,
-    audio: getAudioPerAyah(1),
+    audio: getAudioAyah(1),
   };
 };
 
@@ -83,13 +103,10 @@ const ayahTransformer = (numberSurah, surahsFromQuranCloud) => {
     },
     arab: ayah.aya_text,
     translation: ayah.translation_aya_text,
-    audio: getAudioPerAyah(ayah.aya_id),
+    audio: getAudioAyah(ayah.aya_id),
     image: getImageAyah(numberSurah, ayah.aya_number),
     tafsir: {
-      kemenag: {
-        short: ayah.tafsir.short.text,
-        long: ayah.tafsir.long.text,
-      },
+      kemenag: getTafsirKemenag(ayah.aya_id - 1),
       quraish: getTafsirQuraish(numberSurah, ayah.aya_number),
       jalalayn: getTafsirJalalayn(numberSurah, ayah.aya_number),
     },
@@ -103,25 +120,27 @@ const surahTransformer = (surahsQuranCloud, surahsAudioAndDescription) => {
     numberOfAyahs: surah.count_ayat,
     name: surah.surat_name,
     translation: surah.surat_terjemahan,
-    revalation: revelationEnToId(surahsQuranCloud[surahIdx].revelationType),
+    revelation: revelationEnToId(surahsQuranCloud[surahIdx].revelationType),
     description: cleanHtmlTag(surahsAudioAndDescription[surahIdx].keterangan),
     audio: httpToHttps(surahsAudioAndDescription[surahIdx].audio),
     bismillah: getBismillah(),
-    ayahs: surah.verses.map(ayahTransformer(surah.id, surahsQuranCloud)),
+    ayahs: surah.ayahs.map(ayahTransformer(surah.id, surahsQuranCloud)),
   });
 };
 
 const quranDataBuilder = async () => {
   const surahsQuranCloud = await getSurahsQuranCloud();
   const surahsAudioAndDescription = await getAudioAndDescriptionSurahs();
-  return quranKemenag.map(
+  return surahKemenag.map(
     surahTransformer(surahsQuranCloud, surahsAudioAndDescription)
   );
 };
 
 const main = async () => {
+  console.log("START building");
   const quran = await quranDataBuilder();
-  fs.writeFileSync(pathToData("quran.json"), JSON.stringify(quran));
+  await fs.writeFile(pathToData("quran.json"), JSON.stringify(quran));
+  console.log("FINISHED building");
 };
 
 main();
