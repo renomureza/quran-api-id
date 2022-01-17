@@ -296,10 +296,10 @@ dot-prop@^5.2.0:
   dependencies:
     is-obj "^2.0.0"
 
-dotenv@^11.0.0:
-  version "11.0.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-11.0.0.tgz#ee37feddf8ada6d348a79e198312d4a8abfd1c1e"
-  integrity sha512-Fp/b504Y5W+e+FpCxTFMUZ7ZEQkQYF0rx+KZtmwixJxGQbLHrhCwo3FjZgNC8vIfrSi29PABNbMoCGD9YoiXbQ==
+dotenv@^14.0.1:
+  version "14.0.1"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-14.0.1.tgz#130e75a16df47de88becdf6d47527df76f864d33"
+  integrity sha512-CuBFi54IgZtRqSls21+DLbQ1YZGEx80DerXbnj+wCGZ+UvxQdfXvWJliB3n3yaeaNAQQs2l/53iZwclTHtL3uA==
 
 duplexer3@^0.1.4:
   version "0.1.4"
