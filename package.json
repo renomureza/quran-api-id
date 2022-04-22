@@ -20,6 +20,7 @@
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --check **/*.js",
     "prettier:fix": "prettier --write **/*.js",
+    "prepare": "husky install",
     "build:quran": "node ./src/data/scripts/quranBuilder",
     "scrape:surah": "node ./src/data/scripts/surahKemenagScraper",
     "scrape:tafsir": "node ./src/data/scripts/tafsirKemenagScraper"
@@ -36,7 +37,14 @@
   },
   "devDependencies": {
     "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.1.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
     "jest": "^27.5.1",
+    "lint-staged": "^12.4.0",
     "nodemon": "^2.0.15",
     "prettier": "^2.6.2",
     "supertest": "^6.2.2"

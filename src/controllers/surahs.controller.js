@@ -1,4 +1,4 @@
-const { quranService } = require("../services/");
+const { quranService } = require("../services");
 
 const getSurahs = (req, res) => {
   const listSurahs = quranService.getListSurahs();

@@ -26,7 +26,7 @@ const getAyahs = async (numberSurah) => {
     logError(`AYAHS: surah ${numberSurah} FAIL!`);
     logInfo(`AYAHS: surah ${numberSurah} RE-CRAWL!`);
     await delay(2);
-    return await getAyahs(numberSurah);
+    return getAyahs(numberSurah);
   }
 };
 
