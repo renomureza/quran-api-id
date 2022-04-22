@@ -1,7 +1,7 @@
 {
   "name": "quran-api-id",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./src/index.js",
   "license": "MIT",
   "author": "R.M. Reza (renomureza@gmail.com)",
   "homepage": "https://github.com/renomureza/quran-api-id#readme",
@@ -13,17 +13,40 @@
   "scripts": {
     "dev": "nodemon .",
     "start": "node .",
-    "build:quran": "node ./data/scripts/quranBuilder",
-    "scrape:surah": "node ./data/scripts/surahKemenagScraper",
-    "scrape:tafsir": "node ./data/scripts/tafsirKemenagScraper"
+    "test": "jest -i --colors --verbose --detectOpenHandles",
+    "test:watch": "jest -i --watchAll --verbose",
+    "test:coverage": "jest -i --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prettier": "prettier --check **/*.js",
+    "prettier:fix": "prettier --write **/*.js",
+    "prepare": "husky install",
+    "build:quran": "node ./src/data/scripts/quranBuilder",
+    "scrape:surah": "node ./src/data/scripts/surahKemenagScraper",
+    "scrape:tafsir": "node ./src/data/scripts/tafsirKemenagScraper"
   },
   "dependencies": {
     "axios": "^0.26.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "http-status": "^1.5.1",
+    "morgan": "^1.10.0",
+    "winston": "^3.7.2",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.1.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.5.1",
+    "lint-staged": "^12.4.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.6.2",
+    "supertest": "^6.2.2"
   }
 }

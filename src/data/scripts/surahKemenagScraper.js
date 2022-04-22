@@ -26,7 +26,7 @@ const getAyahs = async (numberSurah) => {
     logError(`AYAHS: surah ${numberSurah} FAIL!`);
     logInfo(`AYAHS: surah ${numberSurah} RE-CRAWL!`);
     await delay(2);
-    return await getAyahs(numberSurah);
+    return getAyahs(numberSurah);
   }
 };
 
@@ -39,7 +39,7 @@ const main = async () => {
   }
 
   await fs.writeFile(
-    pathToData("tmp", "kemenag", "surah.json"),
+    pathToData("tmp", "surah-kemenag.json"),
     JSON.stringify(surahs)
   );
   logSuccess("Everything is DONE!");
