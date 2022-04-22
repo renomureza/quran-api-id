@@ -1,6 +1,6 @@
 {
   "name": "quran-api-id",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "main": "./src/index.js",
   "license": "MIT",
   "author": "R.M. Reza (renomureza@gmail.com)",
