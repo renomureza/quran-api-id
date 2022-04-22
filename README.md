@@ -1,6 +1,6 @@
 <div align="center">
   <a href="./">
-    <img src="./assets/logo.png">
+    <img src="./src/assets/logo.png">
   </a>
   <h1 align="center">Quran API ID</h1>
   <p align="center">

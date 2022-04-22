@@ -13,7 +13,7 @@ const logSuccess = (message) => console.log("\x1b[32m%s\x1b[0m", message);
 const logInfo = (message) => console.log("\x1b[36m%s\x1b[0m", message);
 
 const cleanHtmlTag = (str) => str.replace(/(<([^>]+)>)/gi, "").trim();
-const pathToData = (...paths) => path.join(process.cwd(), "data", ...paths);
+const pathToData = (...paths) => path.resolve("src/data", ...paths);
 const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };

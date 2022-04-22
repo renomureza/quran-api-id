@@ -39,7 +39,7 @@ const main = async () => {
   }
 
   await fs.writeFile(
-    pathToData("tmp", "kemenag", "surah.json"),
+    pathToData("tmp", "surah-kemenag.json"),
     JSON.stringify(surahs)
   );
   logSuccess("Everything is DONE!");

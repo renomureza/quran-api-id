@@ -3,8 +3,8 @@ const { default: axios } = require("axios");
 const tafsirQuraish = require("../tmp/tafsir-quraish.json");
 const tafsirJalalayn = require("../tmp/tafsir-jalalayn.json");
 const { pathToData, cleanHtmlTag } = require("../../utils/utility");
-const tafsirKemenag = require("../../data/tmp/tafsir-kemenag.json");
-const surahKemenag = require("../../data/tmp/surah-kemenag.json");
+const tafsirKemenag = require("../tmp/tafsir-kemenag.json");
+const surahKemenag = require("../tmp/surah-kemenag.json");
 
 const httpToHttps = (str = "") => str.replace("http", "https");
 

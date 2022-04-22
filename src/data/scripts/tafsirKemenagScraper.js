@@ -33,7 +33,7 @@ const main = async () => {
   }
 
   await fs.writeFile(
-    pathToData("tmp", "kemenag", "tafsir.json"),
+    pathToData("tmp", "tafsir-kemenag.json"),
     JSON.stringify(tafsirs)
   );
 };
