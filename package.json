@@ -26,7 +26,7 @@
     "scrape:tafsir": "node ./src/data/scripts/tafsirKemenagScraper"
   },
   "dependencies": {
-    "axios": "^0.26.1",
+    "axios": "^0.27.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
