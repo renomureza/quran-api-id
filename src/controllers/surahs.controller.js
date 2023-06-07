@@ -1,5 +1,7 @@
 const { quranService } = require("../services");
 
+/* eslint no-console: ["error", { allow: ["log"] }] */
+
 const getSurahs = (req, res) => {
   const listSurahs = quranService.getListSurahs();
   return res.send(listSurahs);
@@ -13,7 +15,13 @@ const getSurah = (req, res) => {
 
 const getAyahs = (req, res) => {
   const { surahNumber } = req.params;
-  const ayahs = quranService.getAyahs(surahNumber);
+  let ayahs = quranService.getAyahs(surahNumber);
+  const { from, to } = req.query;
+
+  if (from || to) {
+    ayahs = quranService.getAyahsRange(surahNumber, from, to);
+  }
+
   return res.send(ayahs);
 };
 
