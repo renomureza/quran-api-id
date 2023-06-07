@@ -27,6 +27,20 @@ const getAyahs = (surahNumber) => {
   return ayahs;
 };
 
+const getAyahsRange = (surahNumber, from, to) => {
+  if (!from || !to) {
+    throw new ApiError(httpStatus.NOT_FOUND, "not found");
+  }
+
+  const ayahs = quran[Number(surahNumber) - 1]?.ayahs.slice(from - 1, to);
+
+  if (!ayahs) {
+    throw new ApiError(httpStatus.NOT_FOUND, "not found");
+  }
+
+  return ayahs;
+};
+
 const getAyah = (surahNumber, ayahNumber) => {
   const ayah = quran[Number(surahNumber) - 1]?.ayahs[Number(ayahNumber) - 1];
 
@@ -42,4 +56,11 @@ const getRandomSurah = () => {
   return surah.ayahs[getRandomInt(1, surah.ayahs.length) - 1];
 };
 
-module.exports = { getListSurahs, getSurah, getAyahs, getAyah, getRandomSurah };
+module.exports = {
+  getListSurahs,
+  getSurah,
+  getAyahs,
+  getAyahsRange,
+  getAyah,
+  getRandomSurah,
+};
