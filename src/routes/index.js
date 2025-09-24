@@ -15,6 +15,10 @@ const routes = [
     route: surahsRoute,
   },
   {
+    path: "/page", // Add route for page endpoint
+    route: surahsRoute,
+  },
+  {
     path: "/random",
     route: randomRoute,
   },

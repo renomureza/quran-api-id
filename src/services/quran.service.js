@@ -42,4 +42,20 @@ const getRandomSurah = () => {
   return surah.ayahs[getRandomInt(1, surah.ayahs.length) - 1];
 };
 
-module.exports = { getListSurahs, getSurah, getAyahs, getAyah, getRandomSurah };
+const getAyahsByPage = (pageNumber) => {
+  const page = Number(pageNumber);
+  if (page < 1 || page > 604) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Page number must be between 1 and 604");
+  }
+
+  const ayahsOnPage = quran.flatMap(surah => surah.ayahs).filter(ayah => ayah.meta.page === page);
+
+  if (!ayahsOnPage.length) {
+    // This case should ideally not happen for pages 1-604
+    throw new ApiError(httpStatus.NOT_FOUND, "No ayahs found for this page");
+  }
+
+  return ayahsOnPage;
+};
+
+module.exports = { getListSurahs, getSurah, getAyahs, getAyah, getRandomSurah, getAyahsByPage };

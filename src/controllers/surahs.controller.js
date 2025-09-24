@@ -23,4 +23,10 @@ const getAyah = (req, res) => {
   return res.send(surah);
 };
 
-module.exports = { getSurahs, getSurah, getAyahs, getAyah };
+const getAyahsByPage = (req, res) => {
+  const { pageNumber } = req.params;
+  const ayahs = quranService.getAyahsByPage(pageNumber);
+  return res.send(ayahs);
+};
+
+module.exports = { getSurahs, getSurah, getAyahs, getAyah, getAyahsByPage };

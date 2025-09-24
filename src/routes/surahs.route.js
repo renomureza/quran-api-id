@@ -5,5 +5,6 @@ router.get("/", SurahsController.getSurahs);
 router.get("/:surahNumber", SurahsController.getSurah);
 router.get("/:surahNumber/ayahs", SurahsController.getAyahs);
 router.get("/:surahNumber/ayahs/:ayahNumber", SurahsController.getAyah);
+router.get("/page/:pageNumber", SurahsController.getAyahsByPage);
 
 module.exports = router;
